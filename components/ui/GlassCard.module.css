@@ -1,0 +1,24 @@
+.card {
+  border-radius: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  transition: all 300ms;
+}
+
+.borderGold {
+  border-color: rgba(245, 166, 35, 0.3);
+}
+.borderGold:hover {
+  border-color: rgba(245, 166, 35, 0.7);
+}
+
+.borderPink {
+  border-color: rgba(255, 45, 158, 0.3);
+}
+.borderPink:hover {
+  border-color: rgba(255, 45, 158, 0.7);
+}
+
+.borderNone {
+  border-color: rgba(255, 255, 255, 0.1);
+}

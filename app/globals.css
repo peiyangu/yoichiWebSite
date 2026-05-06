@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #0B1E3A;
+  --color-navy-light: #112640;
+  --color-gold: #F5A623;
+  --color-gold-light: #FFD06B;
+  --color-neon-pink: #FF2D9E;
+  --color-warm-orange: #FF6B2B;
+  --color-deep-blue: #071428;
+
+  /* フォント */
+  --font-sans: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  --font-serif: var(--font-mincho), "游明朝", "YuMincho", "Hiragino Mincho ProN", "HiraMinProN-W6", serif;
+
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
+  --animate-lantern-sway: lantern-sway 3s ease-in-out infinite;
+  --animate-float-up: float-up 0.6s ease-out forwards;
+  --animate-firework-burst: firework-burst 0.8s ease-out forwards;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--color-gold), 0 0 16px var(--color-gold), 0 0 32px rgba(245,166,35,0.3); }
+  50% { box-shadow: 0 0 16px var(--color-gold), 0 0 32px var(--color-gold), 0 0 64px rgba(245,166,35,0.5); }
+}
+
+@keyframes lantern-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes firework-burst {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+:root {
+  --background: #071428;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* 見出しに明朝体を適用 */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ネオングロウユーティリティ */
+.glow-gold {
+  text-shadow: 0 0 8px #F5A623, 0 0 20px rgba(245,166,35,0.7), 0 0 40px rgba(245,166,35,0.4);
+}
+.glow-pink {
+  text-shadow: 0 0 8px #FF2D9E, 0 0 20px rgba(255,45,158,0.7), 0 0 40px rgba(255,45,158,0.4);
+}
+.glow-white {
+  text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+}
+.glow-box-gold {
+  box-shadow: 0 0 8px rgba(245,166,35,0.5), 0 0 20px rgba(245,166,35,0.2), inset 0 0 20px rgba(245,166,35,0.05);
+}
+.glow-box-pink {
+  box-shadow: 0 0 8px rgba(255,45,158,0.5), 0 0 20px rgba(255,45,158,0.2), inset 0 0 20px rgba(255,45,158,0.05);
+}
+
+/* ガラスモーフィズム */
+.glass {
+  background: rgba(7, 20, 40, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 166, 35, 0.15);
+}
+
+/* セクション見出しの装飾ライン */
+.section-heading-line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  margin: 0.75rem auto 0;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050d1c; }
+::-webkit-scrollbar-thumb { background: rgba(245,166,35,0.6); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #F5A623; }

@@ -1,0 +1,17 @@
+.htmlRoot {
+  height: 100%;
+}
+
+.body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #071428;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+  flex: 1;
+}

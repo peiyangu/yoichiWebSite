@@ -1,0 +1,72 @@
+import Link from "next/link";
+import SectionWrapper from "@/components/ui/SectionWrapper";
+import GlassCard from "@/components/ui/GlassCard";
+import NeonButton from "@/components/ui/NeonButton";
+import { Store } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/InstagramIcon";
+import { mockStores } from "@/data/stores";
+import { formatEventDate } from "@/data/events";
+import styles from "./StoresSection.module.css";
+
+export default function StoresSection() {
+  const preview = mockStores.slice(0, 3);
+
+  return (
+    <SectionWrapper id="stores" className={styles.section}>
+      <div className={styles.inner}>
+        {/* ヘッダー */}
+        <div className={styles.header}>
+          <span className={styles.eyebrow}>Stores</span>
+          <h2 className={styles.title}>
+            出店<span className={`${styles.titleAccent} glow-pink`}>情報</span>
+          </h2>
+          <span className="section-heading-line text-[#FF2D9E]" />
+          <p className={styles.desc}>
+            毎週入れ替わる約70店舗が集結！和食・洋食・アジア料理・スイーツ・ドリンクまで勢揃い。
+          </p>
+        </div>
+
+        {/* プレビューカード */}
+        <div className={styles.previewGrid}>
+          {preview.map((store) => (
+            <GlassCard key={store.name} neonColor="pink" className={styles.card}>
+              {/* 画像プレースホルダー */}
+              <div className={styles.cardImage}>
+                <Store size={40} className="text-white/20" />
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardBadgeRow}>
+                  <span className={styles.cardGenre}>{store.genre}</span>
+                  <span className={styles.cardBooth}>ブース {store.boothNumber}</span>
+                </div>
+                <h3 className={styles.cardName}>{store.name}</h3>
+                <p className={styles.cardDesc}>{store.description}</p>
+                <div className={styles.cardDays}>
+                  出店日: {store.days.map(formatEventDate).join("・")}
+                </div>
+                {store.instagram && (
+                  <Link
+                    href={store.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.cardInstagram}
+                    aria-label={`${store.name} の Instagram`}
+                  >
+                    <InstagramIcon size={10} />
+                    Instagram
+                  </Link>
+                )}
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+
+        <div className={styles.cta}>
+          <NeonButton href="/stores" variant="outline" size="lg">
+            全店舗を見る →
+          </NeonButton>
+        </div>
+      </div>
+    </SectionWrapper>
+  );
+}

@@ -1,0 +1,55 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 300ms;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Size variants */
+.sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* Color variants */
+.gold {
+  background-color: #F5A623;
+  color: #071428;
+}
+.gold:hover {
+  background-color: #FFD06B;
+}
+
+.pink {
+  background-color: #FF2D9E;
+  color: #ffffff;
+}
+.pink:hover {
+  background-color: #FF6FC8;
+}
+
+.outline {
+  background-color: transparent;
+  border: 2px solid #F5A623;
+  color: #F5A623;
+}
+.outline:hover {
+  background-color: #F5A623;
+  color: #071428;
+}

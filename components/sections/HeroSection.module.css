@@ -1,0 +1,316 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Background layers */
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgBase {
+  position: absolute;
+  inset: 0;
+  background-color: #030b18;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  background-image: url("https://images.unsplash.com/photo-1764073231256-16b148ff180c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMGZlc3RpdmFsJTIwbmlnaHQlMjBtYXJrZXQlMjBmb29kJTIwc3RhbGxzfGVufDF8fHx8MTc3ODA0NTk1M3ww&ixlib=rb-4.1.0&q=80&w=1080");
+}
+
+.bgGradient1 {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, #0d2040 0%, transparent 70%);
+}
+
+.bgGradient2 {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 30% 60%, #1a0a30 0%, transparent 60%);
+}
+
+.bgFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12rem;
+  background: linear-gradient(to top, #030b18, transparent);
+}
+
+/* Lantern string */
+.lanternRow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7rem;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.lanternSvg {
+  width: 100%;
+  height: 3rem;
+}
+
+/* Lantern component */
+.lanternItem {
+  position: absolute;
+}
+
+.lanternInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lanternThread {
+  width: 1px;
+  height: 1.75rem;
+  background-color: rgba(254, 243, 199, 0.4);
+}
+
+.lanternBody {
+  position: relative;
+  width: 2.25rem;
+  height: 3rem;
+  background: linear-gradient(to bottom, #ef4444, #b91c1c);
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lanternSheen {
+  position: absolute;
+  inset: 0.25rem;
+  background: linear-gradient(to bottom, rgba(248, 113, 113, 0.5), transparent);
+  border-radius: 9999px;
+}
+
+.lanternText {
+  position: relative;
+  z-index: 10;
+  color: #fef9c3;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 1;
+  font-family: var(--font-serif);
+}
+
+.lanternGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: #f87171;
+  filter: blur(6px);
+}
+
+.lanternTail {
+  width: 1px;
+  height: 0.75rem;
+  background-color: rgba(250, 204, 21, 0.5);
+}
+
+/* Main content */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8rem 1rem 9rem;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrowLine {
+  display: block;
+  height: 1px;
+  width: 3rem;
+  background-color: rgba(245, 166, 35, 0.5);
+}
+
+.eyebrowText {
+  font-family: var(--font-sans);
+  color: #F5A623;
+  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+  font-weight: 500;
+}
+
+.heroTitle {
+  line-height: 1;
+  user-select: none;
+}
+
+.heroTitleSub {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: clamp(2.2rem, 9vw, 6.5rem);
+}
+
+.heroTitleMain {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 0.9;
+  font-size: clamp(5rem, 22vw, 14rem);
+  letter-spacing: -0.03em;
+  color: #F5A623;
+  text-shadow: 4px 4px 0 #1e3a8a, 7px 7px 0 #dc2626, 0 0 60px rgba(245, 166, 35, 0.45);
+  -webkit-text-stroke: 2px #dc2626;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.locationLine {
+  display: block;
+  height: 1px;
+  width: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.locationText {
+  font-family: var(--font-sans);
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.45em;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 300;
+}
+
+.badge {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background: linear-gradient(to right, #991b1b, #dc2626, #991b1b);
+  color: #ffffff;
+  padding: 0.75rem 2.5rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  letter-spacing: 0.25em;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+}
+
+.badgeSheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.badgeText {
+  position: relative;
+  z-index: 10;
+}
+
+.badgeWrap {
+  margin-bottom: 2rem;
+}
+
+.countdownWrap {
+  margin-bottom: 2.5rem;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .ctaRow {
+    flex-direction: row;
+  }
+}
+
+/* Info bar */
+.infoBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.infoBarInner {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+}
+
+.infoBarItems {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  justify-content: center;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 640px) {
+  .infoBarItems {
+    font-size: 0.75rem;
+    gap: 1.25rem;
+  }
+}
+
+.infoBarLabel {
+  color: #F5A623;
+  font-weight: 500;
+}
+
+.infoBarDivider {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 166, 35, 0.4);
+}
