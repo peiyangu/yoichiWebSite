@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 const STORAGE_KEY = "yoruichi_loaded";
@@ -28,9 +28,16 @@ export default function ClientWrapper({ children }: { children?: React.ReactNode
           <LoadingScreen onComplete={handleComplete} />
         )}
       </AnimatePresence>
-      <div style={{ visibility: showLoading !== false ? "hidden" : "visible" }}>
-        {children}
-      </div>
+      {showLoading !== null && (
+        <motion.div
+          initial={false}
+          animate={showLoading === false ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ visibility: showLoading !== false ? "hidden" : "visible" }}
+        >
+          {children}
+        </motion.div>
+      )}
     </>
   );
 }

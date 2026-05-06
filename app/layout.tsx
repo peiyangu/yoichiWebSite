@@ -54,10 +54,11 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${notoSansJP.variable} ${shipporiMincho.variable} ${styles.htmlRoot}`}>
       <body className={styles.body}>
-        <ClientWrapper />
-        <Header />
-        <main className={styles.main}>{children}</main>
-        <Footer />
+        <ClientWrapper>
+          <Header />
+          <main className={styles.main}>{children}</main>
+          <Footer />
+        </ClientWrapper>
       </body>
     </html>
   );
