@@ -8,6 +8,7 @@
   transition: all 300ms;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
 }
 
 /* Size variants */

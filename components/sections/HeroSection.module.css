@@ -217,13 +217,23 @@
   overflow: hidden;
   background: linear-gradient(to right, #991b1b, #dc2626, #991b1b);
   color: #ffffff;
-  padding: 0.75rem 2.5rem;
+  padding: 0.6rem 1.25rem;
   font-weight: 700;
   font-family: var(--font-sans);
-  font-size: clamp(0.875rem, 2vw, 1rem);
-  letter-spacing: 0.25em;
+  font-size: clamp(0.75rem, 3.2vw, 1rem);
+  letter-spacing: 0.1em;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  max-width: calc(100vw - 2rem);
+  white-space: nowrap;
+}
+
+@media (min-width: 480px) {
+  .badge {
+    padding: 0.75rem 2.5rem;
+    letter-spacing: 0.25em;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
 }
 
 .badgeSheen {
@@ -244,7 +254,13 @@
 .countdownWrap {
   margin-bottom: 2.5rem;
   width: 100%;
-  max-width: 20rem;
+  max-width: 100%;
+}
+
+@media (min-width: 480px) {
+  .countdownWrap {
+    max-width: 20rem;
+  }
 }
 
 .ctaRow {

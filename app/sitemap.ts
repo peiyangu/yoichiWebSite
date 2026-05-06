@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { EVENT_DATES } from "@/data/events";
 
+export const dynamic = "force-static";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://yoruichi-chikugo.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {

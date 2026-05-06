@@ -4,11 +4,16 @@
 
 .label {
   color: #F5A623;
-  font-size: 0.875rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.875rem);
   font-weight: 600;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .units {

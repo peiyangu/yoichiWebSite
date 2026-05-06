@@ -28,7 +28,9 @@ export default function ClientWrapper({ children }: { children?: React.ReactNode
           <LoadingScreen onComplete={handleComplete} />
         )}
       </AnimatePresence>
-      {children}
+      <div style={{ visibility: showLoading !== false ? "hidden" : "visible" }}>
+        {children}
+      </div>
     </>
   );
 }
