@@ -30,9 +30,18 @@ export default function StoresSection() {
         <div className={styles.previewGrid}>
           {preview.map((store) => (
             <GlassCard key={store.name} neonColor="pink" className={styles.card}>
-              {/* 画像プレースホルダー */}
+              {/* 画像 */}
               <div className={styles.cardImage}>
-                <Store size={40} className="text-white/20" />
+                {store.image && store.image !== "/images/stores/placeholder.jpg" ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={store.image}
+                    alt={store.name}
+                    className={styles.cardImg}
+                  />
+                ) : (
+                  <Store size={40} className="text-white/20" />
+                )}
               </div>
               <div className={styles.cardBody}>
                 <div className={styles.cardBadgeRow}>

@@ -57,7 +57,16 @@ function StoreCard({ store }: StoreCardProps) {
             style={{ background: `linear-gradient(135deg, ${genreColor}18 0%, rgba(11,30,58,0.8) 100%)` }}
           >
             <div className={styles.cardImageInner}>
-              <StoreIcon size={36} className="text-white/10" />
+              {store.image && store.image !== "/images/stores/placeholder.jpg" ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={store.image}
+                  alt={store.name}
+                  className={styles.cardImg}
+                />
+              ) : (
+                <StoreIcon size={36} className="text-white/10" />
+              )}
             </div>
             <span
               className={styles.genreBadge}
