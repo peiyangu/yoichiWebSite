@@ -5,6 +5,7 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import NeonButton from "@/components/ui/NeonButton";
+import { withBasePath } from "@/lib/sitePath";
 import styles from "./GallerySection.module.css";
 
 const PHOTO_FILES = [
@@ -26,7 +27,7 @@ const PHOTO_FILES = [
 
 const GALLERY_ITEMS = PHOTO_FILES.map((file, i) => ({
   id: i,
-  src: `/oldEventPicture/${file}`,
+  src: withBasePath(`/oldEventPicture/${file}`),
   alt: `過去のイベント写真 ${i + 1}`,
 }));
 

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { withBasePath } from "@/lib/sitePath";
 import styles from "./LoadingScreen.module.css";
 
 function Lantern({ x, delay }: { x: number; delay: number }) {
@@ -149,7 +150,7 @@ function LogoDisplay() {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src="/logo.png"
+        src={withBasePath("/logo.png")}
         alt="夜市 in 筑後 ロゴ"
         className={styles.logoImg}
         onError={() => setImgError(true)}

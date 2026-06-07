@@ -6,6 +6,7 @@ import { Store } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/InstagramIcon";
 import { mockStores } from "@/data/stores";
 import { formatEventDate } from "@/data/events";
+import { withBasePath } from "@/lib/sitePath";
 import styles from "./StoresSection.module.css";
 
 export default function StoresSection() {
@@ -35,7 +36,7 @@ export default function StoresSection() {
                 {store.image && store.image !== "/images/stores/placeholder.jpg" ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={store.image}
+                    src={withBasePath(store.image)}
                     alt={store.name}
                     className={styles.cardImg}
                   />
