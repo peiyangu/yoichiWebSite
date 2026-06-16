@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     default: "第3回 土曜食いだおれ夜市 in 筑後",
     template: "%s | 土曜食いだおれ夜市 in 筑後",
   },
+  verification: {
+    google: "4ZO3ALmYSMPpnsvYNlM8tUXKR2vGVF5NDv1hP4VVWeM",
+  },
   description:
     "毎週土曜日、川の駅船小屋 恋ぼたるに約70店舗が集結！筑後の夏夜を彩る食の夜市。2026年7月〜8月開催。",
   keywords: ["夜市", "筑後", "屋台", "夏祭り", "食いだおれ", "川の駅船小屋", "恋ぼたる", "福岡"],
