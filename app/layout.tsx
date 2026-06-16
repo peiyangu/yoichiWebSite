@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho_B1 } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import styles from "./layout.module.css";
 import Header from "@/components/layout/Header";
@@ -57,6 +58,18 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${notoSansJP.variable} ${shipporiMincho.variable} ${styles.htmlRoot}`}>
       <body className={styles.body}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JRP8M0F0S7"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JRP8M0F0S7');
+          `}
+        </Script>
         <ClientWrapper>
           <Header />
           <main className={styles.main}>{children}</main>
