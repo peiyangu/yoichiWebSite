@@ -185,7 +185,9 @@ export default function StoreListSection() {
             <h1 className={styles.title}>
               出店<span className={styles.titleAccent}>一覧</span>
             </h1>
-            <p className={styles.desc}>毎週入れ替わる約70店舗が集結！</p>
+            <p className={styles.desc}>
+              毎週入れ替わる約70店舗が集結！和食・洋食・アジア料理・スイーツ・ドリンクなど多彩なジャンルが揃う、筑後の夏夜を彩るイベントです。店舗名・ジャンル・開催日でしぼり込んで探せます。
+            </p>
           </div>
 
           <div className={styles.filterBar}>

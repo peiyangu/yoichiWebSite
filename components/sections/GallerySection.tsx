@@ -28,7 +28,7 @@ const PHOTO_FILES = [
 const GALLERY_ITEMS = PHOTO_FILES.map((file, i) => ({
   id: i,
   src: withBasePath(`/oldEventPicture/${file}`),
-  alt: `過去のイベント写真 ${i + 1}`,
+  alt: `土曜食いだおれ夜市 in 筑後 過去のイベント写真 ${i + 1}`,
 }));
 
 interface LightboxProps {

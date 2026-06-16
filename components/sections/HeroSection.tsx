@@ -111,6 +111,7 @@ export default function HeroSection() {
           <h1 className={styles.heroTitle}>
             <span className={styles.heroTitleSub}>食いだおれ</span>
             <span className={styles.heroTitleMain}>夜市</span>
+            <span className="sr-only">in 筑後</span>
           </h1>
         </motion.div>
 
