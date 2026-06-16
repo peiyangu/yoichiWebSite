@@ -22,9 +22,14 @@ const shipporiMincho = Shippori_Mincho_B1({
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://kuidaoreyoichi.com";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "第3回 土曜食いだおれ夜市 in 筑後",
     template: "%s | 土曜食いだおれ夜市 in 筑後",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
   },
   verification: {
     google: "4ZO3ALmYSMPpnsvYNlM8tUXKR2vGVF5NDv1hP4VVWeM",
@@ -32,6 +37,9 @@ export const metadata: Metadata = {
   description:
     "毎週土曜日、川の駅船小屋 恋ぼたるに約70店舗が集結！筑後の夏夜を彩る食の夜市。2026年7月〜8月開催。",
   keywords: ["夜市", "筑後", "屋台", "夏祭り", "食いだおれ", "川の駅船小屋", "恋ぼたる", "福岡"],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "ja_JP",

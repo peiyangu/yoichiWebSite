@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
     "土曜食いだおれ夜市 in 筑後へのお問い合わせ。出店・取材・その他のご相談はメール・Instagram DM・お電話にて承ります。",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "お問い合わせ | 土曜食いだおれ夜市 in 筑後",
+    description:
+      "出店・取材・その他のご相談はメール・Instagram DM・お電話にて承ります。",
+    url: "/contact",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
 };
 
 const CONTACT_METHODS = [
