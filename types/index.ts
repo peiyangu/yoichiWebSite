@@ -11,8 +11,9 @@ export interface Store {
 export interface NewsItem {
   id: string;
   date: string;
+  tag: string;
   title: string;
-  content: string;
+  body: string;
 }
 
 export interface FAQItem {

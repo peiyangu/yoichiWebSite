@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -36,6 +37,11 @@ function Lantern({ delay = 0, x = 0 }: { delay?: number; x?: number }) {
 }
 
 export default function HeroSection() {
+  const isTodayEvent = useMemo(() => {
+    const today = new Date().toISOString().split("T")[0];
+    return (EVENT_DATES as readonly string[]).includes(today);
+  }, []);
+
   return (
     <section className={styles.section} aria-label="main visual">
       {/* background */}
@@ -74,6 +80,18 @@ export default function HeroSection() {
 
       {/* main content */}
       <div className={styles.content}>
+        {isTodayEvent && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className={styles.todayBadge}
+          >
+            <span className={styles.todayBadgeDot} />
+            本日 {EVENT_TIME} 開催中！
+          </motion.div>
+        )}
+
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}

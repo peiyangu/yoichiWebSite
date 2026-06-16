@@ -1,13 +1,13 @@
-﻿"use client";
+"use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, SlidersHorizontal, ChevronDown, Store as StoreIcon } from "lucide-react";
+import { Search, SlidersHorizontal, Store as StoreIcon } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/InstagramIcon";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { mockStores, GENRES } from "@/data/stores";
-import { formatEventDate, EVENT_DATES } from "@/data/events";
+import { formatEventDate, EVENT_DATES, getNextEventDate } from "@/data/events";
 import type { Store } from "@/types";
 import { withBasePath } from "@/lib/sitePath";
 import styles from "./StoreListSection.module.css";
@@ -22,14 +22,22 @@ const GENRE_COLORS: Record<string, string> = {
 };
 
 const LANTERN_COLORS = ["#FF2D9E", "#F5A623", "#FF2D9E", "#F5A623", "#FF2D9E"];
+const INITIAL_COUNT = 30;
+const LOAD_MORE_COUNT = 30;
+
+function getInitialDateFilter(): string {
+  const today = new Date().toISOString().split("T")[0];
+  if ((EVENT_DATES as readonly string[]).includes(today)) return today;
+  return getNextEventDate() ?? "すべて";
+}
 
 interface StoreCardProps {
   store: Store;
 }
 
 function StoreCard({ store }: StoreCardProps) {
-  const [expanded, setExpanded] = useState(false);
   const genreColor = GENRE_COLORS[store.genre] ?? "#6b7280";
+  const hasImage = store.image && store.image !== "/images/stores/placeholder.jpg";
 
   return (
     <div className={styles.cardWrapper}>
@@ -58,7 +66,7 @@ function StoreCard({ store }: StoreCardProps) {
             style={{ background: `linear-gradient(135deg, ${genreColor}18 0%, rgba(11,30,58,0.8) 100%)` }}
           >
             <div className={styles.cardImageInner}>
-              {store.image && store.image !== "/images/stores/placeholder.jpg" ? (
+              {hasImage ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={withBasePath(store.image)}
@@ -66,7 +74,12 @@ function StoreCard({ store }: StoreCardProps) {
                   className={styles.cardImg}
                 />
               ) : (
-                <StoreIcon size={36} className="text-white/10" />
+                <div className={styles.placeholder}>
+                  <StoreIcon size={32} style={{ color: genreColor, opacity: 0.5 }} />
+                  <span className={styles.placeholderGenre} style={{ color: genreColor }}>
+                    {store.genre}
+                  </span>
+                </div>
               )}
             </div>
             <span
@@ -81,61 +94,30 @@ function StoreCard({ store }: StoreCardProps) {
           </div>
           <div className={styles.cardBody}>
             <h3 className={styles.storeName}>{store.name}</h3>
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className={styles.expandBtn}
-              style={{
-                background: expanded ? `${genreColor}20` : "rgba(255,255,255,0.05)",
-                border: `1px solid ${expanded ? genreColor + "50" : "rgba(255,255,255,0.1)"}`,
-                color: expanded ? genreColor : "rgba(255,255,255,0.4)",
-              }}
-              aria-expanded={expanded}
-              aria-label={`${store.name} の詳細を${expanded ? "閉じる" : "見る"}`}
-            >
-              <span>{expanded ? "閉じる" : "詳細を見る"}</span>
-              <motion.span
-                animate={{ rotate: expanded ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                style={{ display: "flex" }}
-              >
-                <ChevronDown size={10} />
-              </motion.span>
-            </button>
           </div>
-          <AnimatePresence initial={false}>
-            {expanded && (
-              <motion.div
-                key="detail"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className={styles.expandArea}
-              >
-                <div
-                  className={styles.expandContent}
-                  style={{ borderTop: `1px solid ${genreColor}25` }}
+          <div className={styles.expandArea}>
+            <div
+              className={styles.expandContent}
+              style={{ borderTop: `1px solid ${genreColor}25` }}
+            >
+              <p className={styles.storeDesc}>{store.description}</p>
+              <div className={styles.storeDays}>
+                出店日: {store.days.map(formatEventDate).join("・")}
+              </div>
+              {store.instagram && (
+                <Link
+                  href={store.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.storeInstagram}
+                  aria-label={`${store.name} の Instagram`}
                 >
-                  <p className={styles.storeDesc}>{store.description}</p>
-                  <div className={styles.storeDays}>
-                    出店日: {store.days.map(formatEventDate).join("・")}
-                  </div>
-                  {store.instagram && (
-                    <Link
-                      href={store.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.storeInstagram}
-                      aria-label={`${store.name} の Instagram`}
-                    >
-                      <InstagramIcon className="w-2.5 h-2.5" />
-                      Instagram
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  <InstagramIcon className="w-2.5 h-2.5" />
+                  Instagram
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -145,7 +127,9 @@ function StoreCard({ store }: StoreCardProps) {
 export default function StoreListSection() {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("すべて");
-  const [dateFilter, setDateFilter] = useState<string>("すべて");
+  const [dateFilter, setDateFilter] = useState<string>(getInitialDateFilter);
+  const [displayCount, setDisplayCount] = useState(INITIAL_COUNT);
+  const prevFiltersRef = useRef({ search, genre, dateFilter });
 
   const filtered = useMemo(
     () =>
@@ -162,6 +146,17 @@ export default function StoreListSection() {
       }),
     [search, genre, dateFilter]
   );
+
+  useEffect(() => {
+    const prev = prevFiltersRef.current;
+    if (prev.search !== search || prev.genre !== genre || prev.dateFilter !== dateFilter) {
+      setDisplayCount(INITIAL_COUNT);
+      prevFiltersRef.current = { search, genre, dateFilter };
+    }
+  }, [search, genre, dateFilter]);
+
+  const displayed = useMemo(() => filtered.slice(0, displayCount), [filtered, displayCount]);
+  const hasMore = filtered.length > displayCount;
 
   return (
     <div className={styles.pageWrapper}>
@@ -256,7 +251,10 @@ export default function StoreListSection() {
             ))}
           </div>
 
-          <p className={styles.count}>{filtered.length} 店舗表示中</p>
+          <p className={styles.count}>
+            {filtered.length} 店舗
+            {hasMore && <span>（{displayed.length} 件表示中）</span>}
+          </p>
 
           {filtered.length === 0 ? (
             <div className={styles.empty}>
@@ -264,18 +262,30 @@ export default function StoreListSection() {
               <p>条件に合う店舗が見つかりませんでした。</p>
             </div>
           ) : (
-            <div className={styles.grid}>
-              {filtered.map((store, i) => (
-                <motion.div
-                  key={store.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                >
-                  <StoreCard store={store} />
-                </motion.div>
-              ))}
-            </div>
+            <>
+              <div className={styles.grid}>
+                {displayed.map((store, i) => (
+                  <motion.div
+                    key={store.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: Math.min(i, 10) * 0.04, duration: 0.4 }}
+                  >
+                    <StoreCard store={store} />
+                  </motion.div>
+                ))}
+              </div>
+              {hasMore && (
+                <div className={styles.loadMore}>
+                  <button
+                    onClick={() => setDisplayCount((c) => c + LOAD_MORE_COUNT)}
+                    className={styles.loadMoreBtn}
+                  >
+                    もっと見る（残り {filtered.length - displayCount} 件）
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </SectionWrapper>

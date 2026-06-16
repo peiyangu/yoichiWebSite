@@ -38,10 +38,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [phase, setPhase] = useState<"enter" | "hold" | "exit">("enter");
 
   useEffect(() => {
-    // enter 0.6s → hold 1.4s → exit 0.6s
-    const t1 = setTimeout(() => setPhase("hold"), 600);
-    const t2 = setTimeout(() => setPhase("exit"), 2000);
-    const t3 = setTimeout(() => onComplete(), 2600);
+    // enter 0.3s → hold 0.6s → exit 0.5s (total 1.4s)
+    const t1 = setTimeout(() => setPhase("hold"), 300);
+    const t2 = setTimeout(() => setPhase("exit"), 900);
+    const t3 = setTimeout(() => onComplete(), 1400);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [onComplete]);
 

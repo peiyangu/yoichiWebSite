@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo } from "react";
 import Link from "next/link";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import GlassCard from "@/components/ui/GlassCard";
@@ -10,7 +13,14 @@ import { withBasePath } from "@/lib/sitePath";
 import styles from "./StoresSection.module.css";
 
 export default function StoresSection() {
-  const preview = mockStores.slice(0, 3);
+  const preview = useMemo(() => {
+    const withImage = mockStores.filter(
+      (s) => s.image && s.image !== "/images/stores/placeholder.jpg"
+    );
+    const pool = withImage.length >= 3 ? withImage : mockStores;
+    const shuffled = [...pool].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 3);
+  }, []);
 
   return (
     <SectionWrapper id="stores" className={styles.section}>

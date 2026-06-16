@@ -15,10 +15,10 @@ const notoSansJP = Noto_Sans_JP({
 const shipporiMincho = Shippori_Mincho_B1({
   variable: "--font-mincho",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "700"],
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://yoruichi-chikugo.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://kuidaoreyoichi.com";
 
 export const metadata: Metadata = {
   title: {

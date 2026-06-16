@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -41,8 +41,36 @@ interface LightboxProps {
 
 function Lightbox({ items, index, onClose, onPrev, onNext }: LightboxProps) {
   const item = items[index];
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") onPrev();
+      else if (e.key === "ArrowRight") onNext();
+      else if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onPrev, onNext, onClose]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? onNext() : onPrev();
+    touchStartX.current = null;
+  };
+
   return (
-    <div className={styles.lightbox} onClick={onClose}>
+    <div
+      className={styles.lightbox}
+      onClick={onClose}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <button className={styles.lightboxClose} onClick={onClose} aria-label="閉じる">
         <X size={22} />
       </button>
