@@ -9,20 +9,20 @@ import { withBasePath } from "@/lib/sitePath";
 import styles from "./GallerySection.module.css";
 
 const PHOTO_FILES = [
-  "DSC_1070.JPG",
-  "DSC_1204.JPG",
-  "DSC_1287.JPG",
-  "DSC_1337.JPG",
-  "DSC_1342.JPG",
-  "DSC_1346.JPG",
-  "DSC_1365.JPG",
-  "DSC_1367.JPG",
-  "DSC_1403.JPG",
-  "DSC_1409.JPG",
-  "DSC_1465.JPG",
-  "DSC_1469.JPG",
-  "DSC_1859.JPG",
-  "DSC_1896.JPG",
+  "DSC_1070.webp",
+  "DSC_1204.webp",
+  "DSC_1287.webp",
+  "DSC_1337.webp",
+  "DSC_1342.webp",
+  "DSC_1346.webp",
+  "DSC_1365.webp",
+  "DSC_1367.webp",
+  "DSC_1403.webp",
+  "DSC_1409.webp",
+  "DSC_1465.webp",
+  "DSC_1469.webp",
+  "DSC_1859.webp",
+  "DSC_1896.webp",
 ] as const;
 
 const GALLERY_ITEMS = PHOTO_FILES.map((file, i) => ({

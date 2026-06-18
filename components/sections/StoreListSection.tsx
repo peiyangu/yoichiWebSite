@@ -9,7 +9,7 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 import { mockStores, GENRES } from "@/data/stores";
 import { formatEventDate, EVENT_DATES, getNextEventDate } from "@/data/events";
 import type { Store } from "@/types";
-import { withBasePath } from "@/lib/sitePath";
+import { withBasePath, toWebpPath } from "@/lib/sitePath";
 import styles from "./StoreListSection.module.css";
 
 const GENRE_COLORS: Record<string, string> = {
@@ -69,9 +69,11 @@ function StoreCard({ store }: StoreCardProps) {
               {hasImage ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={withBasePath(store.image)}
+                  src={withBasePath(toWebpPath(store.image))}
                   alt={store.name}
                   className={styles.cardImg}
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div className={styles.placeholder}>

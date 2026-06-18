@@ -9,7 +9,7 @@ import { Store } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/InstagramIcon";
 import { mockStores } from "@/data/stores";
 import { formatEventDate } from "@/data/events";
-import { withBasePath } from "@/lib/sitePath";
+import { withBasePath, toWebpPath } from "@/lib/sitePath";
 import styles from "./StoresSection.module.css";
 
 export default function StoresSection() {
@@ -43,12 +43,14 @@ export default function StoresSection() {
             <GlassCard key={store.name} neonColor="pink" className={styles.card}>
               {/* 画像 */}
               <div className={styles.cardImage}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 {store.image && store.image !== "/images/stores/placeholder.jpg" ? (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={withBasePath(store.image)}
+                    src={withBasePath(toWebpPath(store.image))}
                     alt={store.name}
                     className={styles.cardImg}
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <Store size={40} className="text-white/20" />

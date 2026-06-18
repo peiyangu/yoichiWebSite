@@ -1,4 +1,5 @@
 import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
 import OverviewSection from "@/components/sections/OverviewSection";
 import StoresSection from "@/components/sections/StoresSection";
 import VenueSection from "@/components/sections/VenueSection";
@@ -146,6 +147,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <HeroSection />
+      <SectionDivider />
+      <AboutSection />
       <SectionDivider />
       <OverviewSection />
       <SectionDivider />
