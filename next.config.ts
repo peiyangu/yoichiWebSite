@@ -6,6 +6,7 @@ const basePath = isProd ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   basePath,
   assetPrefix: isProd ? `${basePath}/` : "",
   env: {

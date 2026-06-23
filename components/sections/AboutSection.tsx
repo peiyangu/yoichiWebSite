@@ -37,7 +37,7 @@ export default function AboutSection() {
         <div className={styles.header}>
           <span className={styles.eyebrow}>About</span>
           <h2 className={styles.title}>
-            くいだおれ夜市<span className={`${styles.titleAccent} glow-gold`}>とは</span>
+            食いだおれ夜市<span className={`${styles.titleAccent} glow-gold`}>とは</span>
           </h2>
           <span className="section-heading-line text-[#F5A623]" />
           <p className={styles.lead}>
