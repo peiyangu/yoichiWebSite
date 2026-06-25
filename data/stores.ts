@@ -346,15 +346,6 @@ export const mockStores: Store[] = [
     genre: "フード",
   },
   {
-    name: "糸島フルーツパーラー",
-    boothNumber: "",
-    description: "無添加スムージー・クラフトジュース",
-    image: "",
-    instagram: "https://www.instagram.com/itoshima_fruitsparlor",
-    days: ["2026-07-25"],
-    genre: "ドリンク",
-  },
-  {
     name: "聖屋めだかshop",
     boothNumber: "",
     description: "めだか掬い めだか個体販売",
