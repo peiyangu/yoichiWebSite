@@ -159,8 +159,8 @@ export const mockStores: Store[] = [
   {
     name: "てんやわんや",
     boothNumber: "",
-    description: "カルビ、ドリンク",
-    image: "/store-images/まごころ.jpg",
+    description: "骨付きカルビ、とうもろこし、各種ドリンク",
+    image: "/store-images/てんやわんや.jpg",
     instagram: "https://www.instagram.com/tenyawanya65",
     days: ["2026-07-18","2026-07-25","2026-08-01","2026-08-15","2026-08-22","2026-08-29"],
     genre: "フード",
