@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath,
   assetPrefix: isProd ? `${basePath}/` : "",
+  allowedDevOrigins: ["192.168.0.15"],
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },

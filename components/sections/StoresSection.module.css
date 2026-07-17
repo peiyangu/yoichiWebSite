@@ -114,6 +114,16 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
+.cardBoothLink {
+  text-decoration: none;
+  transition: color 200ms;
+}
+
+.cardBoothLink:hover,
+.cardBoothLink:focus-visible {
+  color: #F5A623;
+}
+
 .cardName {
   color: #ffffff;
   font-weight: 700;

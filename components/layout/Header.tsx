@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/#overview", label: "開催概要" },
   { href: "/#stores", label: "出店情報" },
   { href: "/#venue", label: "会場" },
+  { href: "/venue-map", label: "会場マップ" },
   { href: "/stores", label: "店舗一覧" },
   { href: "/gallery", label: "イベント風景" },
   { href: "/contact", label: "お問い合わせ" },

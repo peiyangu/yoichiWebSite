@@ -1,7 +1,7 @@
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import GlassCard from "@/components/ui/GlassCard";
 import NeonButton from "@/components/ui/NeonButton";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation, Map as MapIcon } from "lucide-react";
 import { VENUE } from "@/data/events";
 import styles from "./VenueSection.module.css";
 
@@ -61,17 +61,29 @@ export default function VenueSection() {
               </div>
             </div>
 
-            <NeonButton
-              href={VENUE.googleMapsLink}
-              variant="outline"
-              size="md"
-              external
-              aria-label="Google マップで開く"
-              className="w-full"
-            >
-              <Navigation size={16} />
-              Google マップで開く
-            </NeonButton>
+            <div className={styles.venueButtonRow}>
+              <NeonButton
+                href="#venue-map"
+                variant="gold"
+                size="md"
+                aria-label="会場マップを見る"
+                className="w-full"
+              >
+                <MapIcon size={16} />
+                会場マップを見る
+              </NeonButton>
+              <NeonButton
+                href={VENUE.googleMapsLink}
+                variant="outline"
+                size="md"
+                external
+                aria-label="Google マップで開く"
+                className="w-full"
+              >
+                <Navigation size={16} />
+                Google マップで開く
+              </NeonButton>
+            </div>
           </GlassCard>
         </div>
       </div>

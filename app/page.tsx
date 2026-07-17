@@ -3,6 +3,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import OverviewSection from "@/components/sections/OverviewSection";
 import StoresSection from "@/components/sections/StoresSection";
 import VenueSection from "@/components/sections/VenueSection";
+import VenueMapSection from "@/components/sections/VenueMapSection";
 import InstagramSection from "@/components/sections/InstagramSection";
 import NewsSection from "@/components/sections/NewsSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -155,6 +156,8 @@ export default function Home() {
       <StoresSection />
       <SectionDivider />
       <VenueSection />
+      <SectionDivider />
+      <VenueMapSection />
       <SectionDivider />
       <InstagramSection />
       <SectionDivider />

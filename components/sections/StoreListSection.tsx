@@ -10,6 +10,7 @@ import { mockStores, GENRES } from "@/data/stores";
 import { formatEventDate, EVENT_DATES, getNextEventDate } from "@/data/events";
 import type { Store } from "@/types";
 import { withBasePath, toWebpPath } from "@/lib/sitePath";
+import { getPrimaryBooth } from "@/lib/boothNumber";
 import styles from "./StoreListSection.module.css";
 
 const GENRE_COLORS: Record<string, string> = {
@@ -38,6 +39,7 @@ interface StoreCardProps {
 function StoreCard({ store }: StoreCardProps) {
   const genreColor = GENRE_COLORS[store.genre] ?? "#6b7280";
   const hasImage = store.image && store.image !== "/images/stores/placeholder.jpg";
+  const primaryBooth = getPrimaryBooth(store.boothNumber);
 
   return (
     <div className={styles.cardWrapper}>
@@ -90,9 +92,20 @@ function StoreCard({ store }: StoreCardProps) {
             >
               {store.genre}
             </span>
-            <div className={styles.boothBadge}>
-              <span className={styles.boothNum}>{store.boothNumber}</span>
-            </div>
+            {primaryBooth ? (
+              <Link
+                href={`/venue-map?booth=${encodeURIComponent(primaryBooth)}`}
+                className={styles.boothBadge}
+                aria-label={`会場マップで${store.name}の場所（ブース${store.boothNumber}）を見る`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className={styles.boothNum}>{store.boothNumber}</span>
+              </Link>
+            ) : (
+              <div className={styles.boothBadge}>
+                <span className={styles.boothNum}>{store.boothNumber}</span>
+              </div>
+            )}
           </div>
           <div className={styles.cardBody}>
             <h3 className={styles.storeName}>{store.name}</h3>
