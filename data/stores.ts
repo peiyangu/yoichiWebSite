@@ -25,7 +25,7 @@ export const mockStores: Store[] = [
     name: "久留米焼鳥 つかさ",
     boothNumber: "",
     description: "焼きとり",
-    image: "/store-images/慶陽堂.jpg",
+    image: "",
     instagram: "https://www.instagram.com/yakitori_tsukasa",
     days: ["2026-07-18","2026-07-25","2026-08-01","2026-08-15","2026-08-22","2026-08-29"],
     genre: "フード",
