@@ -24,6 +24,10 @@ export const VENUE_MAP_IMAGE = "/map/map.jpg";
 export const VENUE_MAP_IMAGE_WIDTH = 1522;
 export const VENUE_MAP_IMAGE_HEIGHT = 1076;
 
+// 会場マップの公開状態。false の間はサイト上に画像・番号を表示せず「公開予定」の
+// 案内のみ表示する（画像ファイル自体は次回開催でも使うため削除しない）。
+export const VENUE_MAP_PUBLISHED = false;
+
 export const VENUE_MAP_AREAS: VenueMapArea[] = [
   { booth: "1", xPct: 19.382, yPct: 13.941, wPct: 2.694, hPct: 3.717 },
   { booth: "2", xPct: 27.004, yPct: 12.454, wPct: 2.628, hPct: 3.81 },

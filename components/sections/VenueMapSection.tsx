@@ -8,7 +8,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import { InstagramIcon } from "@/components/ui/InstagramIcon";
 import { mockStores } from "@/data/stores";
 import { formatEventDate } from "@/data/events";
-import { VENUE_MAP_AREAS, VENUE_MAP_IMAGE, VENUE_MAP_IMAGE_WIDTH, VENUE_MAP_IMAGE_HEIGHT } from "@/data/venueMapAreas";
+import { VENUE_MAP_AREAS, VENUE_MAP_IMAGE, VENUE_MAP_IMAGE_WIDTH, VENUE_MAP_IMAGE_HEIGHT, VENUE_MAP_PUBLISHED } from "@/data/venueMapAreas";
 import type { Store } from "@/types";
 import { withBasePath, toWebpPath } from "@/lib/sitePath";
 import { getBoothList } from "@/lib/boothNumber";
@@ -182,93 +182,103 @@ export default function VenueMapSection() {
             会場<span className={styles.titleAccent}>マップ</span>
           </h2>
           <span className="section-heading-line text-[#F5A623]" />
-          <p className={styles.desc}>
-            番号をタップすると、該当する店舗情報が表示されます。
-            <br />
-            ブース番号は主催者側で順次公開予定です。
-          </p>
-        </div>
-
-        {/* 検索 */}
-        <div className={styles.searchWrapper}>
-          <Search size={16} className={styles.searchIcon} aria-hidden="true" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="店舗名で検索する（例: baobab coffee）"
-            className={styles.searchInput}
-            aria-label="店舗名で検索"
-          />
-          {suggestions.length > 0 && (
-            <div className={styles.suggestions}>
-              {suggestions.map((s) => (
-                <button
-                  key={s.name}
-                  type="button"
-                  className={styles.suggestionItem}
-                  onClick={() => handleSuggestionClick(s)}
-                >
-                  {s.name}
-                </button>
-              ))}
-            </div>
+          {VENUE_MAP_PUBLISHED ? (
+            <p className={styles.desc}>
+              番号をタップすると、該当する店舗情報が表示されます。
+              <br />
+              ブース番号は主催者側で順次公開予定です。
+            </p>
+          ) : (
+            <p className={styles.desc}>
+              会場マップは公開準備中です。公開までしばらくお待ちください。
+            </p>
           )}
         </div>
 
-        <div className={styles.grid}>
-          {/* マップ */}
-          <div className={styles.mapWrapper} ref={mapWrapperRef}>
-            <div
-              className={styles.mapImageContainer}
-              style={{ aspectRatio: `${VENUE_MAP_IMAGE_WIDTH} / ${VENUE_MAP_IMAGE_HEIGHT}` }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={withBasePath(VENUE_MAP_IMAGE)}
-                alt="会場マップ"
-                className={styles.mapImage}
+        {VENUE_MAP_PUBLISHED && (
+          <>
+            {/* 検索 */}
+            <div className={styles.searchWrapper}>
+              <Search size={16} className={styles.searchIcon} aria-hidden="true" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="店舗名で検索する（例: baobab coffee）"
+                className={styles.searchInput}
+                aria-label="店舗名で検索"
               />
-              {VENUE_MAP_AREAS.map((area, i) => {
-                const hasStore = BOOTHS_WITH_STORE_DATA.has(area.booth);
-                return (
-                  <button
-                    key={`${area.booth}-${i}`}
-                    type="button"
-                    disabled={!hasStore}
-                    className={`${styles.areaBtn} ${
-                      activeAreaBooths.has(area.booth) ? styles.areaBtnActive : ""
-                    } ${!hasStore ? styles.areaBtnDisabled : ""}`}
-                    style={{
-                      left: `${area.xPct}%`,
-                      top: `${area.yPct}%`,
-                      width: `${area.wPct}%`,
-                      height: `${area.hPct}%`,
-                    }}
-                    onClick={hasStore ? () => selectBooth(area.booth) : undefined}
-                    aria-label={
-                      hasStore
-                        ? `ブース ${area.booth} の店舗情報を見る`
-                        : `ブース ${area.booth}（店舗は未定です）`
-                    }
-                  />
-                );
-              })}
+              {suggestions.length > 0 && (
+                <div className={styles.suggestions}>
+                  {suggestions.map((s) => (
+                    <button
+                      key={s.name}
+                      type="button"
+                      className={styles.suggestionItem}
+                      onClick={() => handleSuggestionClick(s)}
+                    >
+                      {s.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-            <p className={styles.hint}>
-              <MapPin size={14} className="inline-block mr-1 align-[-2px]" />
-              ヒント: スマホでは番号をタップするとポップアップで店舗情報が表示されます。
-            </p>
-          </div>
 
-          {/* 店舗情報パネル（デスクトップ） */}
-          <GlassCard className={styles.panel}>{panelContent}</GlassCard>
-        </div>
+            <div className={styles.grid}>
+              {/* マップ */}
+              <div className={styles.mapWrapper} ref={mapWrapperRef}>
+                <div
+                  className={styles.mapImageContainer}
+                  style={{ aspectRatio: `${VENUE_MAP_IMAGE_WIDTH} / ${VENUE_MAP_IMAGE_HEIGHT}` }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={withBasePath(VENUE_MAP_IMAGE)}
+                    alt="会場マップ"
+                    className={styles.mapImage}
+                  />
+                  {VENUE_MAP_AREAS.map((area, i) => {
+                    const hasStore = BOOTHS_WITH_STORE_DATA.has(area.booth);
+                    return (
+                      <button
+                        key={`${area.booth}-${i}`}
+                        type="button"
+                        disabled={!hasStore}
+                        className={`${styles.areaBtn} ${
+                          activeAreaBooths.has(area.booth) ? styles.areaBtnActive : ""
+                        } ${!hasStore ? styles.areaBtnDisabled : ""}`}
+                        style={{
+                          left: `${area.xPct}%`,
+                          top: `${area.yPct}%`,
+                          width: `${area.wPct}%`,
+                          height: `${area.hPct}%`,
+                        }}
+                        onClick={hasStore ? () => selectBooth(area.booth) : undefined}
+                        aria-label={
+                          hasStore
+                            ? `ブース ${area.booth} の店舗情報を見る`
+                            : `ブース ${area.booth}（店舗は未定です）`
+                        }
+                      />
+                    );
+                  })}
+                </div>
+                <p className={styles.hint}>
+                  <MapPin size={14} className="inline-block mr-1 align-[-2px]" />
+                  ヒント: スマホでは番号をタップするとポップアップで店舗情報が表示されます。
+                </p>
+              </div>
+
+              {/* 店舗情報パネル（デスクトップ） */}
+              <GlassCard className={styles.panel}>{panelContent}</GlassCard>
+            </div>
+          </>
+        )}
       </div>
 
       {/* モバイル用モーダル */}
       <AnimatePresence>
-        {modalOpen && (
+        {VENUE_MAP_PUBLISHED && modalOpen && (
           <motion.div
             className={styles.modalOverlay}
             initial={{ opacity: 0 }}
