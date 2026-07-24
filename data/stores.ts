@@ -49,6 +49,15 @@ export const mockStores: Store[] = [
     genre: "フード",
   },
   {
+    name: "SOL",
+    boothNumber: "30",
+    description: "炭酸氷（KIYORAきくち）",
+    image: "",
+    instagram: "https://www.instagram.com/SOL_OFFICIAL_",
+    days: ["2026-07-25","2026-08-15","2026-08-22"],
+    genre: "フード",
+  },
+  {
     name: "嫁のからあげ伝説",
     boothNumber: "35",
     description: "からあげ、しゃかしゃかポテト",
