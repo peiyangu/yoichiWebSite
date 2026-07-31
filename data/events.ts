@@ -26,8 +26,17 @@ export const CONTACT = {
   hours: "11:00〜21:00",
 } as const;
 
+/** "YYYY-MM-DD" をローカルタイムの Date（00:00）としてパースする。
+ * `new Date("YYYY-MM-DD")` はUTC 0時として解釈されてしまい、
+ * JST等では日付や時刻の比較がずれるため、この関数を必ず使う。
+ */
+function parseEventDate(dateStr: string): Date {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
 export function formatEventDate(dateStr: string): string {
-  const d = new Date(dateStr);
+  const d = parseEventDate(dateStr);
   const month = d.getMonth() + 1;
   const day = d.getDate();
   const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -35,11 +44,36 @@ export function formatEventDate(dateStr: string): string {
   return `${month}/${day}（${weekday}）`;
 }
 
-export function getNextEventDate(): string | null {
-  const now = new Date();
+/** イベント当日は21:00（終了時刻）まで「次回イベント」として扱う。 */
+export function getNextEventDate(now: Date = new Date()): string | null {
   for (const dateStr of EVENT_DATES) {
-    const d = new Date(dateStr);
-    if (d >= now) return dateStr;
+    const end = parseEventDate(dateStr);
+    end.setHours(21, 0, 0, 0);
+    if (end >= now) return dateStr;
   }
   return null;
+}
+
+export type EventPhase =
+  | { phase: "upcoming"; date: string; target: Date }
+  | { phase: "live"; date: string }
+  | { phase: "ended" };
+
+/**
+ * 現在時刻に対するイベントの状態を返す。
+ * - upcoming: 開催日の17:00より前。17:00までの残り時間（target）を返す
+ * - live: 開催日の17:00〜21:00の間。「本日開催中」表示用
+ * - ended: 全ての開催日が終了済み
+ */
+export function getEventPhase(now: Date = new Date()): EventPhase {
+  for (const dateStr of EVENT_DATES) {
+    const start = parseEventDate(dateStr);
+    start.setHours(17, 0, 0, 0);
+    const end = parseEventDate(dateStr);
+    end.setHours(21, 0, 0, 0);
+
+    if (now < start) return { phase: "upcoming", date: dateStr, target: start };
+    if (now < end) return { phase: "live", date: dateStr };
+  }
+  return { phase: "ended" };
 }

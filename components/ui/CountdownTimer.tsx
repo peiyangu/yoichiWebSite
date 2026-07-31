@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getNextEventDate, formatEventDate } from "@/data/events";
+import { getEventPhase, formatEventDate, EVENT_TIME, type EventPhase } from "@/data/events";
 import styles from "./CountdownTimer.module.css";
 
 interface TimeLeft {
@@ -23,18 +23,34 @@ function calcTimeLeft(target: Date): TimeLeft {
 }
 
 export default function CountdownTimer() {
-  const nextDate = getNextEventDate();
+  const [phase, setPhase] = useState<EventPhase | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    if (!nextDate) return;
-    const target = new Date(`${nextDate}T17:00:00`);
-    setTimeLeft(calcTimeLeft(target));
-    const id = setInterval(() => setTimeLeft(calcTimeLeft(target)), 1000);
+    const tick = () => {
+      const p = getEventPhase();
+      setPhase(p);
+      setTimeLeft(p.phase === "upcoming" ? calcTimeLeft(p.target) : null);
+    };
+    tick();
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [nextDate]);
+  }, []);
 
-  if (!nextDate || !timeLeft) return null;
+  if (!phase || phase.phase === "ended") return null;
+
+  if (phase.phase === "live") {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.liveBadge}>
+          <span className={styles.liveDot} />
+          本日 {EVENT_TIME} 開催中！
+        </div>
+      </div>
+    );
+  }
+
+  if (!timeLeft) return null;
 
   const units = [
     { label: "日", value: timeLeft.days },
@@ -46,7 +62,7 @@ export default function CountdownTimer() {
   return (
     <div className={styles.wrapper}>
       <p className={styles.label}>
-        Next Event — {formatEventDate(nextDate)} まで
+        {formatEventDate(phase.date)} 17:00 開催まで
       </p>
       <div className={styles.units}>
         {units.map(({ label, value }, i) => (
