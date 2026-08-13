@@ -77,7 +77,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "燻製処 はやし家",
-    boothNumber: "81",
+    boothNumber: "",
     description: "バインミー、ベトナムコーヒー、オリジナル丼物（薫鶏飯）",
     image: "/store-images/燻製処 はやし家.jpg",
     instagram: "https://www.instagram.com/hayashiya.kun",
@@ -167,7 +167,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "CLOVER",
-    boothNumber: "77",
+    boothNumber: "",
     description: "米粉チュロス、ビネガードリンク",
     image: "/store-images/CLOVER.jpg",
     instagram: "https://www.instagram.com/foodtruck_clover",
@@ -203,7 +203,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "居酒屋八蔵",
-    boothNumber: "67",
+    boothNumber: "",
     description: "鶏の炭火焼, 生ビール, ハイボール, レモンサワー, レモネード, クラッシュアイスジュース",
     image: "/store-images/居酒屋八蔵.jpg",
     instagram: "https://www.instagram.com/yagura.chikugo",
@@ -212,7 +212,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "楽園キッチンカー",
-    boothNumber: "72",
+    boothNumber: "",
     description: "プルドポークサンド、ガーリックシュリンプ、ドリンク、アルコール",
     image: "/store-images/宮古そばSAIGA筑後店.jpg",
     instagram: "https://www.instagram.com/rakuen_car",
@@ -230,7 +230,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "たぬか縁日",
-    boothNumber: "19",
+    boothNumber: "",
     description: "射的、スケルトンガラポンくじ",
     image: "/store-images/たぬか縁日.jpg",
     instagram: "https://www.instagram.com/tanuponmedaka",
@@ -239,7 +239,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "林檎の木",
-    boothNumber: "73",
+    boothNumber: "",
     description: "りんご飴",
     image: "",
     instagram: "https://www.instagram.com/ringonoki0320",
@@ -266,7 +266,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "MUNCHA",
-    boothNumber: "86",
+    boothNumber: "",
     description: "生タピオカドリンク7種、巨峰ベリーヨーグルトフラッペ",
     image: "/store-images/MUNCHA.jpg",
     instagram: "https://www.instagram.com/munchaitoshima",
@@ -347,7 +347,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "ワビサビ",
-    boothNumber: "37",
+    boothNumber: "",
     description: "炭焼ソーセージ、ベーコン、炭焼きチキン、ノンアルビール、炭焼きつくね",
     image: "/store-images/ワビサビ.jpg",
     instagram: "https://www.instagram.com/syukouwabisabi",
@@ -356,7 +356,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "炭焼ぢ鶏香炭",
-    boothNumber: "26",
+    boothNumber: "",
     description: "鶏の炭火焼き、アメリカンドック、握り天\nアルコール",
     image: "/store-images/炭焼ぢ鶏香炭.jpg",
     instagram: "https://www.instagram.com/kotan.jidori",
@@ -365,7 +365,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "聖屋めだかshop",
-    boothNumber: "15",
+    boothNumber: "",
     description: "めだか掬い めだか個体販売",
     image: "/store-images/聖屋めだかshop.jpg",
     instagram: "https://www.instagram.com/seiya_medaka.shop",
@@ -464,7 +464,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "Tamachans Kitchen",
-    boothNumber: "70",
+    boothNumber: "",
     description: "パニーニ、ドリンク、焼きとうもろこし、ベーコン串、アサイーボウル、かき氷、ミニパフェ",
     image: "",
     instagram: "https://www.instagram.com/tamachans_kitchen",
@@ -473,7 +473,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "焼肉大将軍",
-    boothNumber: "37",
+    boothNumber: "",
     description: "牛タン鉄板焼き、ジャンボ焼き鳥、焼きそば",
     image: "/store-images/焼肉大将軍筑後店.jpg",
     instagram: "https://www.instagram.com/ryo.egami0825",
@@ -527,7 +527,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "長尾農園",
-    boothNumber: "76",
+    boothNumber: "",
     description: "あまおうスイーツ・コーヒー・お茶",
     image: "/store-images/長尾農園.jpg",
     instagram: "https://www.instagram.com/nagao_farm_",
@@ -536,7 +536,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "yurari",
-    boothNumber: "20, 21",
+    boothNumber: "",
     description: "射的、スーパーボール掬い、ワークショップキーホルダー作り、2ブース希望",
     image: "/store-images/yurari.jpg",
     instagram: "https://www.instagram.com/medameda524",
@@ -572,7 +572,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "米粉専門工房FLOUR",
-    boothNumber: "34",
+    boothNumber: "",
     description: "オーガニックドリンク、無添加惣菜、無農薬米粉の焼き菓子",
     image: "/store-images/米粉専門工房FLOUR.jpg",
     instagram: "https://www.instagram.com/flour.chiffon",
@@ -590,7 +590,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "八女ブルワリー",
-    boothNumber: "14",
+    boothNumber: "",
     description: "クラフトビール",
     image: "/store-images/八女ブルワリー.jpg",
     instagram: "https://www.instagram.com/yamebrewery",
@@ -707,7 +707,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "Cappadocia  Kitchen",
-    boothNumber: "35",
+    boothNumber: "",
     description: "ケバブサンド",
     image: "",
     instagram: "https://www.instagram.com/cappadociakitchen_fukuoka",
@@ -716,7 +716,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "たまちゃん農園",
-    boothNumber: "22",
+    boothNumber: "",
     description: "あまおうスイーツ、あまおうのお酒",
     image: "/store-images/たまちゃん農園.jpg",
     instagram: "https://www.instagram.com/tamachan15farm",
@@ -779,7 +779,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "CHARCOAL BOTTLE",
-    boothNumber: "16",
+    boothNumber: "",
     description: "ドリップコーヒー､コーヒー豆､焼き菓子",
     image: "/store-images/CHARCOALBOTTLE.jpg",
     instagram: "https://www.instagram.com/charcoal_bottle",
@@ -788,7 +788,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "mami.ribbon",
-    boothNumber: "17",
+    boothNumber: "",
     description: "LEDライトキャンドル、キャンドルキーホルダー、お名前キーホルダー、お名前ボトル",
     image: "/store-images/mami.ribbon.jpg",
     instagram: "https://www.instagram.com/mami.ribbon",
@@ -806,7 +806,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "甘味ya-tsu",
-    boothNumber: "27",
+    boothNumber: "",
     description: "あんみつ、冷やしぜんざい、モナカ、",
     image: "/store-images/甘味ya-tsu.webp",
     instagram: "https://www.instagram.com/kanmi_ya_tsu",
@@ -815,7 +815,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "Lala",
-    boothNumber: "78",
+    boothNumber: "",
     description: "マラサダ、クリームガーリックシュリンプ、シュリンプバーガー、アイスサンドマラサダ、アサイーボウル、フルーツドリンク、コーヒー、ラテ、アルコール",
     image: "/store-images/Lala.jpg",
     instagram: "https://www.instagram.com/lala_happytoeat",
@@ -950,7 +950,7 @@ export const mockStores: Store[] = [
   },
   {
     name: "lotus☆shop",
-    boothNumber: "31",
+    boothNumber: "",
     description: "ハンドメイドアクセサリー",
     image: "/store-images/lotus☆shop.jpg",
     instagram: "https://www.instagram.com/lotus0311",
